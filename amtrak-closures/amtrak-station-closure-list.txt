@@ -1,0 +1,221 @@
+city,state
+Albuquerque,NM
+Alderson,WV
+Alliance,OH
+Alpine,TX
+Anniston,AL
+Arcadia,MO
+Arkadelphia,AR
+Ashland,KY
+Atlanta,GA
+Austin,TX
+Barstow,CA
+Beaumont,TX
+Benson,AZ
+Bingen,WA
+Birmingham,AL
+Brookhaven,MS
+Bryan,OH
+Burlington,IA
+Charleston,SC
+Charleston,WV
+Chemult,OR
+Chico,CA
+Cincinnati,OH
+Cleburne,TX
+Clemson,SC
+Cleveland,OH
+Clifton Forge,VA
+Colfax,CA
+Columbia,SC
+Columbus,WI
+Connellsville,PA
+Creston,IA
+Cumberland,MD
+Cut Bank,MT
+Dallas,TX
+Danville,VA
+Deerfield Beach,FL
+Del Rio,TX
+Deland,FL
+Delray Beach,FL
+Deming,NM
+Denver,CO
+Detroit Lakes,MN
+Devils Lake,ND
+Dillon,SC
+Dodge City,KS
+Dunsmuir,CA
+East Glacier Park,MT
+El Paso,TX
+Elkhart,IN
+Elko,NV
+Elyria,OH
+Ephrata,WA
+Erie,PA
+Essex,MT
+Fargo,ND
+Fayetteville,NC
+Flagstaff,AZ
+Florence,SC
+Fort Lauderdale,FL
+Fort Madison,IA
+Fort Morgan,CO
+Framingham,MA
+Fulton,KY
+Gainesville,GA
+Gallup,NM
+Garden City,KS
+Gastonia,NC
+Glasgow,MT
+Glenwood Springs,CO
+Granby,CO
+Grand Forks,ND
+Grand Junction,CO
+Green River,UT
+Greenville,SC
+Greenwood,MS
+Hamlet,NC
+Hammond,LA
+Harpers Ferry,WV
+Hastings,NE
+Hattiesburg,MS
+Havre,MT
+Hazlehurst,MS
+Helper,UT
+Hinton,WV
+Holdrege,NE
+Hollywood,FL
+Hope,AR
+Houston,TX
+Huntington,WV
+Hutchinson,KS
+Jackson,MS
+Jacksonville,FL
+Jesup,GA
+Kingman,AZ
+Kingstree,SC
+Kissimmee,FL
+Klamath Falls,OR
+La Crosse,WI
+La Junta,CO
+La Plata,MO
+Lafayette,LA
+Lake Charles,LA
+Lakeland,FL
+Lamar,CO
+Lamy,NM
+Las Vegas,NM
+Laurel,MS
+Lawrence,KS
+Libby,MT
+Lincoln,NE
+Little Rock,AR
+Longview,TX
+Lordsburg,NM
+Lorton,VA
+Malta,MT
+Malvern,AR
+Maricopa,AZ
+Marshall,TX
+Martinsburg,WV
+Maysville,KY
+McComb,MS
+McCook,NE
+McGregor,TX
+Memphis,TN
+Meridian,MS
+Miami,FL
+Mineola,TX
+Minot,ND
+Montgomery,WV
+Mount Pleasant,IA
+Needles,CA
+New Iberia,LA
+New Orleans,LA
+Newbern-Dyersburg,TN
+Newton,KS
+Okeechobee,FL
+Omaha,NE
+Ontario,CA
+Orlando,FL
+Osceola,IA
+Ottumwa,IA
+Palatka,FL
+Palm Springs,CA
+Pasco,WA
+Paso Robles,CA
+Picayune,MS
+Pittsfield,MA
+Pomona,CA
+Poplar Bluff,MO
+Portage,WI
+Prince,WV
+Provo,UT
+Raton,NM
+Red Wing,MN
+Redding,CA
+Reno,NV
+Riverside,CA
+Rockville,MD
+Rugby,ND
+Salinas,CA
+Salt Lake City,UT
+San Antonio,TX
+San Bernardino,CA
+San Marcos,TX
+Sanderson,TX
+Sandpoint,ID
+Sandusky,OH
+Sanford,FL
+Savannah,GA
+Schriever,LA
+Sebring,FL
+Shelby,MT
+Slidell,LA
+South Bend,IN
+South Portsmouth,KY
+Southern Pines,NC
+Spartanburg,SC
+Spokane,WA
+St. Cloud,MN
+St. Paul-Minneapolis,MN
+Stanley,ND
+Staples,MN
+Staunton,VA
+Tampa,FL
+Taylor,TX
+Temple,TX
+Texarkana,AR
+Thurmond,WV
+Toccoa,GA
+Toledo,OH
+Tomah,WI
+Topeka,KS
+Trinidad,CO
+Truckee,CA
+Tucson,AZ
+Tuscaloosa,AL
+Victorville,CA
+Walnut Ridge,AR
+Waterloo,IN
+Wenatchee,WA
+West Glacier,MT
+West Palm Beach,FL
+White Sulphur Springs,WV
+Whitefish,MT
+Williams Jct.,AZ
+Williston,ND
+Winnemucca,NV
+Winona,MN
+Winslow,AZ
+Winter Haven,FL
+Winter Park,FL
+Winter Park-Fraser,CO
+Wisconsin Dells,WI
+Wishram,WA
+Wolf Point,MT
+Worcester,MA
+Yazoo City,MS
+Yemassee,SC
+Yuma,AZ

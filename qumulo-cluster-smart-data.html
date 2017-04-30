@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Qumulo Cluster SMART data with D3.js</title>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/d3/4.8.0/d3.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+    <style>
+    svg{
+        border: 1px solid red;
+    }
+    </style>
+</head>
+<body>
+    <svg width="1000" height="2000" style="width:1000px; height: 2000px;">
+    </svg>
+    <script>
+        d3.csv("data/three-days-of-smart-data-for-cluster.csv", function(data){
+            data = data
+            var rows_dict = {};
+            var row_keys = ['node_id', 'smart_id', 'device_id'];
+            var norm_keys = ['smart_id', 'maker'];
+            var val_name = 'raw_val1';
+            var norm_dict = {}
+            data.forEach(function(d){
+                d.smart_id = + d.smart_id;
+                d.node_id = +d.node_id;
+                d.raw_val1 = +d.raw_val1;
+                d.raw_value = +d.raw_value;
+                d.val = +d.val;
+                d.ts_time = moment(Math.floor((+d.ts)/(2*60*60))*2*60*60*1000);
+
+                var norm_key = []
+                norm_keys.forEach(function(rk){
+                    norm_key.push(d[rk]);
+                })
+                d['norm_key'] = norm_key.join('|');
+                if(!(d.norm_key in norm_dict)){
+                    norm_dict[d.norm_key] = 1
+                }
+                if(d[val_name] > norm_dict[d.norm_key]){
+                    norm_dict[d.norm_key] = d[val_name];
+                }
+
+                var row_key = [];
+                row_keys.forEach(function(rk){
+                    row_key.push(d[rk]);
+                })
+                d['rk'] = row_key.join('|');
+                if(!(d.rk in rows_dict)){
+                    rows_dict[d.rk] = {k:row_key, data:[], max_val:1}
+                }
+                if(d[val_name] > rows_dict[d.rk].max_val){
+                    rows_dict[d.rk].max_val = d[val_name];
+                }
+
+                rows_dict[d.rk].data.push(d)
+            })
+            var rows_array = Object.values(rows_dict);
+            rows_array.sort(function(a, b){return a.smart_id - b.smart_id})
+            var svg = d3.select("svg");
+            var width = +svg.attr("width");
+            var x = d3.scaleLinear()
+                        .range([10, width-50])
+                        .domain(d3.extent(data, function(d){return d.ts_time}))
+
+            var color = d3.scaleLinear()
+                .domain([0, 1])
+                .range(["white", "red"]);
+
+            var bar_w = 42;
+            console.log(norm_dict)
+            console.log("Start!")
+
+            var viz_row = svg.selectAll("g.row")
+                            .data(rows_array)
+                            .enter()
+                            .append("g")
+                            .attr("class", "row")
+                            .attr("transform", function(d, i){
+                                return "translate(0, " + i + ")";
+                            })
+
+            viz_row.selectAll("rect.bar")
+                .data(function(d){
+                    return d.data;
+                })
+                .enter()
+                .append("rect")
+                .attr("class", "bar")
+                .attr("x", function(d){return x(d.ts_time)})
+                .attr("width", bar_w)
+                .attr("y", 1)
+                .attr("height", 1)
+                .attr("fill", function(d){
+                    var c_val = d[val_name] / norm_dict[d.norm_key];
+                    return color(c_val);
+                })
+            console.log("Done!")
+
+        })
+    </script>
+
+</body>
+</html>
