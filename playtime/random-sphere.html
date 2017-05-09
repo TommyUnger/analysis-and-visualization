@@ -1,0 +1,58 @@
+<style>
+body{
+    background-color: black;
+    margin: 0;
+    padding: 0;
+}
+canvas{
+}
+</style>
+
+<canvas id="main-canvas">
+</canvas>
+
+<script>
+
+var c=document.getElementById("main-canvas");
+c.style.width = window.innerWidth + "px";
+c.style.height = window.innerHeight + "px";
+c.width = window.innerWidth;
+c.height = window.innerHeight;
+var ctx=c.getContext("2d");
+ctx.imageSmoothingEnabled = true;
+
+var cx = c.width / 2;
+var cy = c.height / 2;
+
+
+var pi = Math.PI;
+console.log(pi)
+var x = cx;
+var y = cy;
+var r = 300;
+var diffy = 14;
+var th = Math.random() * 2 - 1;
+for(var i=0; i<112500; i++){
+    ctx.beginPath();
+    ctx.moveTo(x, y);
+
+    r = r + (Math.random()*diffy-diffy*0.49)
+    if(r > 300 && Math.random() < 0.02){
+        r = 300;
+    }else if(r < 0){
+        r = 300;
+    }
+    x = r * Math.sin(pi*th) + cx
+    y = r * Math.cos(pi*th) + cy
+    th += Math.random()*0.04 - 0.021
+
+    if(r > 300 || r < -300){
+        ctx.strokeStyle = "rgba(255, 128, 0," + 0.04 + ")"
+    }else{
+        ctx.strokeStyle = "rgba(255, 255, 255," + 0.12 + ")"
+    }
+    ctx.lineTo(x, y);
+    ctx.stroke();
+}
+
+</script>
