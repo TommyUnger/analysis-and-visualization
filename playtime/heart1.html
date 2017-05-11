@@ -1,0 +1,115 @@
+<style>
+body{
+    background-color: black;
+    margin: 0;
+    padding: 0;
+}
+canvas{
+}
+</style>
+<script src="//cdnjs.cloudflare.com/ajax/libs/d3/4.8.0/d3.js">
+</script>
+<canvas id="main-canvas">
+</canvas>
+
+<script>
+
+var c=document.getElementById("main-canvas");
+c.style.width = window.innerWidth + "px";
+c.style.height = window.innerHeight + "px";
+c.width = window.innerWidth;
+c.height = window.innerHeight;
+var pi = Math.PI;
+
+var ctx=c.getContext("2d");
+ctx.imageSmoothingEnabled = true;
+
+
+function random_point_on_circle(r){
+//    var theta = Math.random() * 2 * pi;
+    var theta = Math.random() * 2 * pi;
+    var x = r * Math.pow(Math.sin(theta), 3)
+    var y = (r * 13 / 16) * Math.cos(theta) 
+            - (r * 5 / 16 ) * Math.cos(2*theta) 
+            - (r * 2 / 16) * Math.cos(3*theta) 
+            - (r * 1 / 16) * Math.cos(4*theta)
+
+    var pt = {"x": x, //* ((theta)%(pi/1.5)),
+              "y": -y, // * ((theta)%(pi/1.5)),
+              "theta": theta}
+    return pt;
+}
+
+function dist(p1, p2){
+    return Math.sqrt(Math.pow(p1.x - p2.x, 2) + Math.pow(p1.y - p2.y, 2));
+}
+
+var circles = [];
+var grid = [];
+var grid_w = 14;
+var grid_h = 10;
+for(var y=0; y<grid_h; y++){
+    var row = []
+    for(var x=0; x<grid_w; x++){
+        row.push([])        
+    }
+    grid.push(row)
+}
+
+function circle(){
+    var color_angles = [0, 0, 10, 350]
+    color_angle = color_angles[Math.floor(Math.random() * color_angles.length)];
+    var cl = d3.hsl(color_angle, Math.random()*0.7 + 0.2, Math.random() * 0.7 + 0.2);
+    var max_r = Math.random() * 250;
+
+    var cx = c.width * Math.random();
+    var cy = c.height * Math.random();
+    var overlap = true;
+    var iters = 0
+    while(overlap && iters < 100000){
+        cx = c.width * Math.random()
+        cy = c.height * Math.random()
+        overlap = false
+        for(var i=0; i<circles.length; i++){
+            var cir = circles[i];
+            if(dist(cir, {"x": cx, "y": cy}) - (max_r + cir.r) < 1){
+                overlap = true;
+                break;
+            }
+            max_r -= 0.01;
+            iters += 1;
+        }
+    }
+    var new_circle = {"x": cx, "y": cy, "r": max_r}
+    circles.push(new_circle)
+    var grid_x = Math.floor(grid_w * cx / c.width)
+    var grid_y = Math.floor(grid_h * cy / c.height)
+    grid[grid_y][grid_x].push(new_circle)
+
+    var r = max_r;
+    var th = Math.random() * 2 * pi;
+    var thz = Math.random() * pi / 2;
+    var rgb = Math.round(cl.rgb().r) + ", "+ Math.round(cl.rgb().g) + ", "+ Math.round(cl.rgb().b)
+    for(var i=0; i<r*20; i++){
+        ctx.beginPath();
+        var p1 = random_point_on_circle(r);
+        var p2 = random_point_on_circle(r);
+        var len = dist(p1, p2);
+        var opacity = Math.pow((1 - len / (2 * r)) * 0.7 + 0.02, 3)+0.03;
+        if((p1.y < -r*0.25) && (p2.y < -r*0.25) && ((p1.x < 0 && p2.x > 0) || (p1.x > 0 && p2.x < 0))){
+            opacity = 0;
+        }
+        if(Math.abs(p1.x) < 0.1 || Math.abs(p2.x) < 0.1){
+            opacity = 0.001
+        }
+        ctx.moveTo(p1.x + cx, p1.y + cy);
+        ctx.strokeStyle = "rgba(" +  rgb + ", "+ opacity + ")";
+        ctx.lineTo(p2.x + cx, p2.y + cy);
+        ctx.stroke();
+    }
+}
+
+for(var i=0; i<380; i++){
+    circle();
+}
+</script>
