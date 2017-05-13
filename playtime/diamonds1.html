@@ -26,9 +26,13 @@ ctx.imageSmoothingEnabled = true;
 
 
 function random_point_on_circle(r){
+//    var theta = Math.random() * 2 * pi;
     var theta = Math.random() * 2 * pi;
-    var pt = {"x": r * Math.sin(theta),
-              "y": r * Math.cos(theta),
+    var x = r * Math.pow(Math.sin(theta), 3)
+    var y = r * Math.pow(Math.cos(theta), 3)
+
+    var pt = {"x": x, //* ((theta)%(pi/1.5)),
+              "y": -y, // * ((theta)%(pi/1.5)),
               "theta": theta}
     return pt;
 }
@@ -50,9 +54,9 @@ for(var y=0; y<grid_h; y++){
 }
 
 function circle(){
-    var color_angles = [10, 70, 45, 300]
+    var color_angles = [60, 90, 45, 220]
     color_angle = color_angles[Math.floor(Math.random() * color_angles.length)];
-    var cl = d3.hsl(color_angle, 1, .5);
+    var cl = d3.hsl(color_angle, Math.random()*0.7 + 0.2, Math.random() * 0.7 + 0.2);
     var max_r = Math.random() * 250;
 
     var cx = c.width * Math.random();
@@ -69,11 +73,10 @@ function circle(){
                 overlap = true;
                 break;
             }
-            max_r -= 0.05;
+            max_r -= 0.01;
             iters += 1;
         }
     }
-    console.log(iters);
     var new_circle = {"x": cx, "y": cy, "r": max_r}
     circles.push(new_circle)
     var grid_x = Math.floor(grid_w * cx / c.width)
@@ -90,6 +93,12 @@ function circle(){
         var p2 = random_point_on_circle(r);
         var len = dist(p1, p2);
         var opacity = Math.pow((1 - len / (2 * r)) * 0.7 + 0.02, 3)+0.03;
+        if((p1.y < -r*0.25) && (p2.y < -r*0.25) && ((p1.x < 0 && p2.x > 0) || (p1.x > 0 && p2.x < 0))){
+            opacity = 0;
+        }
+        if(Math.abs(p1.x) < 0.1 || Math.abs(p2.x) < 0.1){
+            opacity = 0.001
+        }
         ctx.moveTo(p1.x + cx, p1.y + cy);
         ctx.strokeStyle = "rgba(" +  rgb + ", "+ opacity + ")";
         ctx.lineTo(p2.x + cx, p2.y + cy);
@@ -100,5 +109,4 @@ function circle(){
 for(var i=0; i<380; i++){
     circle();
 }
-console.log(grid)
 </script>
